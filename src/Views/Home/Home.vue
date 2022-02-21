@@ -30,7 +30,7 @@
 				</div>
 			</div>
       <img class="fond-button" src="../../assets/images/fond-please.jpg">
-			<b-button class="button-3d" type="submit">AGORA!!</b-button>
+			<b-button href="" @click.prevent="enviar()" class="button-3d" >AGORA!!</b-button>
 		</div>
 	</div>
   
@@ -59,7 +59,12 @@
 				nacionalitySelected: 'Francês',
 			};
 		},
-		methods: {},
+		methods: {
+
+      enviar(){
+       window.location.replace("https://api.whatsapp.com/send?phone=81998921993&text=Dale,%20me%20recomenda%20uma%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
+      }
+    },
 		computed: {}
 	};
   
