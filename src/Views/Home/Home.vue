@@ -1,10 +1,10 @@
 <template>
-	<div class="view">
-		<div class="flex-container">
-			<h1 class="indie">Dale!!</h1>
-			<div class="inputs">
-				<div class="phrase">
-					<h2 class="recomend" >Me recomende um</h2>
+	<div class="flex-container">
+		<div class="">
+			<h1 class="dale">Dale!!</h1>
+			<div class="">
+				<div class="">
+					<h2 class="" >Me recomende um</h2>
 					<div>
 						<select type="select" v-model="typeSelected">
 							<option v-for="type in types" :value="type" :key="type">
@@ -29,7 +29,7 @@
 					</div>
 				</div>
 			</div>
-      <img class="fond-button" src="../../assets/images/fond-please.jpg">
+     <!-- <img class="fond-button" src="../../assets/images/fond-please.jpg"> -->
 			<b-button href="" @click.prevent="enviar()" class="button-3d" >AGORA!!</b-button>
 		</div>
 	</div>
@@ -70,12 +70,29 @@
   
 </script>
 
-<style lang="scss" scoped>
-body{
-    position:fixed;
-    overflow:hidden;
+<style lang="scss" >
+
+html, body {
+	height: 100%;
+  min-height: 100%;
+  width: 100%;
+  background-color: orange;
+
 }
 
+.flex-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border: 20px solid black;
+height: calc(100vh)
+}
+
+.dale{
+  font-family: indie;
+  font-size: 10em;
+}
 .fond-button{
 z-index: 0;
 display: block;
@@ -94,54 +111,6 @@ margin-top: 60vh;
     } }
 
 }
-	.view {
-    
-		background-color: rgb(255, 121, 24);
-		height: 100vh;
-    display: flex;
-	}
-
-	.flex-container {
-    
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-   
-	}
-	.phrase {
-    z-index: 10;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-    max-height: 30px;
-    position: relative;
-    flex-wrap: nowrap;
-	}
-	h1 {
-    position: relative;
-		font-family: indie;
-    z-index: 9;
-		font-size: 15vw;
-		font-style: italic;
-	}
-
-	h2,
-	span {
-		font-size: 3.5vw;
-		font-family: indie;
-		font-weight: bolder;
-	}
-
-	.inputs {
-    display: flex;
-		margin: 1em;
-		font-size: 3vw;
-		font-family: indie;
-    flex-wrap:nowrap;
-    flex-direction:column;
-	}
-
 
 
 	@font-face {
