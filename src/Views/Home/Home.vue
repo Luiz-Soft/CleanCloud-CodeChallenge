@@ -43,7 +43,7 @@
 		name: 'Home',
 		data() {
 			return {
-				types: ['Filme', 'Série', 'Anime', 'Pornô'],
+				types: ['Filme', 'Seriado', 'Anime', 'Pornô'],
 				genders: ['Comédia', 'Terror', 'Aventura'],
 				nacionalities: [
 					'Francês',
