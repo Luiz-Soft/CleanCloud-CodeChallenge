@@ -62,7 +62,7 @@
 		methods: {
 
       enviar(){
-       window.location.replace("https://api.whatsapp.com/send?phone=81998921993&text=Dale,%20me%20recomenda%20uma%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
+       window.location.replace("https://api.whatsapp.com/send?phone=5581998921993&text=Dale,%20me%20recomenda%20uma%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
       }
     },
 		computed: {}
