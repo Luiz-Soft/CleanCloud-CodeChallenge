@@ -1,23 +1,23 @@
 <template>
 	<div class="flex-container">
 		<div class="">
-			<h1 class="dale">Dale!!</h1>
-			<div class="">
-				<div class="">
-					<h2 class="" >Me recomende um</h2>
-					<div>
-						<select type="select" v-model="typeSelected">
+			<h1 class="title">Dale!!</h1>
+			<div class="phrase">
+				
+					<h2 >Me recomende um</h2>
+					
+						<select class="input" type="select" v-model="typeSelected">
 							<option v-for="type in types" :value="type" :key="type">
 								{{ type }}
 							</option>
 						</select>
-						<span>de</span>
-						<select type="select" v-model="genderSelected">
+						<h2>de</h2>
+						<select class="input" type="select" v-model="genderSelected">
 							<option v-for="gender in genders" :value="gender" :key="gender">
 								{{ gender }}
 							</option>
 						</select>
-						<select type="select" v-model="nacionalitySelected">
+						<select class="input" type="select" v-model="nacionalitySelected">
 							<option
 								v-for="nacionality in nacionalities"
 								:value="nacionality"
@@ -26,11 +26,16 @@
 								{{ nacionality }}
 							</option>
 						</select>
-					</div>
-				</div>
+					
+				
 			</div>
-     <!-- <img class="fond-button" src="../../assets/images/fond-please.jpg"> -->
-			<b-button href="" @click.prevent="enviar()" class="button-3d" >AGORA!!</b-button>
+     
+     
+     <div class="agora">
+			<button  @click.prevent="enviar()" class="button-3d" >AGORA!!</button>
+      <img class="fond-button" src="../../assets/images/fond-please.jpg">
+      </div>
+     
 		</div>
 	</div>
   
@@ -62,7 +67,7 @@
 		methods: {
 
       enviar(){
-       window.location.replace("https://api.whatsapp.com/send?phone=5581998921993&text=Dale,%20me%20recomenda%20um%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
+       window.location.replace("https://api.whatsapp.com/send?phone=5581998921993&text=title,%20me%20recomenda%20um%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
       }
     },
 		computed: {}
@@ -72,12 +77,40 @@
 
 <style lang="scss" >
 
+.agora{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+position: relative
+}
+.agora .fond-button{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: -1;
+}
+
+h2{
+  font-size: 2em;
+}
+
+.input{
+  font-size: 2em;
+}
+.title{
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
 html, body {
 	height: 100%;
   min-height: 100%;
   width: 100%;
-  background-color: orange;
-
+  background-color: rgb(255,121,24);
+  position:fixed
 }
 
 .flex-container{
@@ -85,14 +118,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-border: 20px solid black;
+//border: 20px solid black;
 height: calc(100vh)
 }
 
-.dale{
+.phrase{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.title{
   font-family: indie;
   font-size: 10em;
+  font-style: italic;
 }
+
 .fond-button{
 z-index: 0;
 display: block;
