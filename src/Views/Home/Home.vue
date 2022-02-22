@@ -67,7 +67,7 @@
 		methods: {
 
       enviar(){
-       window.location.replace("https://api.whatsapp.com/send?phone=5581998921993&text=title,%20me%20recomenda%20um%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
+       window.location.replace("https://api.whatsapp.com/send?phone=5581998921993&text=Dale!!,%20me%20recomenda%20um%20"+this.typeSelected+"%20de%20"+this.genderSelected+"%20"+this.nacionalitySelected+".%20AGORA!!");
       }
     },
 		computed: {}
@@ -180,10 +180,12 @@ $pink-shadow: #ffe3e2;
 
 
 button {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-family: indie;
-  min-height: 100px;
-  min-width: 270px;
+  min-height: 50px;
+  min-width: 135px;
+  max-height: 100px;
+  max-width: 270px;
   margin: 50px;
   position: relative;
   display: inline-block;
@@ -237,7 +239,7 @@ button {
   }
 }
 
-	@media only screen and (max-device-width: 480px) {
+/*	@media only screen and (max-device-width: 480px) {
 		h1 {
 			font-size: 30vw;
 		}
@@ -271,7 +273,7 @@ button {
       align-items: center;
       margin-left: 6vh;
     }
-	}
+	}*/
 
 
 
