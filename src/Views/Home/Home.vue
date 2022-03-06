@@ -16,7 +16,7 @@
            :fields="fields">
     <template v-slot:cell(Ações)="data" >
         <b-button @click.prevent="removeItem(data.item, data.index)">
-          Deletar {{data.index}}
+          Deletar
         </b-button>
       </template>
   </b-table>
