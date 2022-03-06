@@ -64,6 +64,7 @@ import CepService from '../../services/CepService'
 				this.selectedItem = selectedItem
 				this.selectedItemIndex = index		
 				this.showUndo()	
+				localStorage.setItem('ceps', JSON.stringify(this.items) )
 			},
 
 			showUndo(){
@@ -75,11 +76,13 @@ import CepService from '../../services/CepService'
 			undoRemotion({item, index}){
 				this.items.splice(index, 0, item)
 				this.isUndoVisible=false
+				localStorage.setItem('ceps', JSON.stringify(this.items) )
 			},
 			getAddress(){
 			let tempCep = ''
 			if(this.$route.params.cep){
 			tempCep= this.$route.params.cep
+			this.$route.params.cep=null
 			}else {
 				tempCep = this.cep
 			}
@@ -87,6 +90,7 @@ import CepService from '../../services/CepService'
 				CepService.getAddress(tempCep).then((response)=>{	
 					let tempAdress = { Rua: response.data.logradouro, CEP: response.data.cep, Cidade: response.data.localidade ,Estado: response.data.uf, Complemento: response.data.complemento, }
 					this.items.push(tempAdress)
+					localStorage.setItem('ceps', JSON.stringify(this.items) )
 				}).catch(error=>console.log(error))
 			},
 			
@@ -110,7 +114,9 @@ import CepService from '../../services/CepService'
 			if(this.$route.params.cep){
 				this.getAddress()
 			}
-			
+			if(localStorage.getItem('ceps')){
+				this.items = JSON.parse(localStorage.getItem('ceps'))
+			}
 		}
 
 		
