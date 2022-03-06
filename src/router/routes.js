@@ -8,11 +8,15 @@ export default [
         }
     },*/
     {
-        path: "/",
+        path: '/:cep?',
         name:"home",
         component:()=> import("../Views/Home/Home"),
+        props: (route) => ({
+            cep: route.params.cep,
+          }),
         meta:{
-            title: "Recomend.me",
+            title: "CleanCloud-Challenge",
         }
-    }
+    },
+
 ]

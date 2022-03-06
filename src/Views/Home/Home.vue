@@ -4,7 +4,7 @@
 			<p>Pesquisar endereço</p>
 			
 			<b-form-input v-model="cep" placeholder="Digite o CEP" :formatter="formatCep" />
-			<b-button @click.prevent="getCep" >Pesquisar</b-button>
+			<b-button @click.prevent="getAddress" >Pesquisar</b-button>
 			<p> {{Mensagem}} </p>
 		</div>
         
@@ -76,9 +76,15 @@ import CepService from '../../services/CepService'
 				this.items.splice(index, 0, item)
 				this.isUndoVisible=false
 			},
-			getCep(){
-				console.log("CHEGOU NO GET CEP GALERA")
-				CepService.getAddress(this.cep).then((response)=>{	
+			getAddress(){
+			let tempCep = ''
+			if(this.$route.params.cep){
+			tempCep= this.$route.params.cep
+			}else {
+				tempCep = this.cep
+			}
+			
+				CepService.getAddress(tempCep).then((response)=>{	
 					let tempAdress = { Rua: response.data.logradouro, CEP: response.data.cep, Cidade: response.data.localidade ,Estado: response.data.uf, Complemento: response.data.complemento, }
 					this.items.push(tempAdress)
 				}).catch(error=>console.log(error))
@@ -100,7 +106,14 @@ import CepService from '../../services/CepService'
 			},
 
 		},
-		computed: {},
+		beforeMount(){
+			if(this.$route.params.cep){
+				this.getAddress()
+			}
+			
+		}
+
+		
 	};
 </script>
 
