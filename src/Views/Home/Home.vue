@@ -2,10 +2,9 @@
 	<div class="container">
 		<div class="formView">
 			<p>Pesquisar endereço</p>
-			
 			<b-form-input v-model="cep" placeholder="Digite o CEP" :formatter="formatCep" />
 			<b-button @click.prevent="getAddress" >Pesquisar</b-button>
-			<p> {{Mensagem}} </p>
+			<p> {{message}} </p>
 		</div>
         
 		<div>
@@ -45,10 +44,8 @@ import CepService from '../../services/CepService'
 					{ Rua: 89, CEP: 'Geneva', Cidade: 'Wilson',Estado: 'Larsen',Complemento: 'Macdonald', },
 					{ Rua: 38, CEP: 'Jami', Cidade: 'Carney',Estado: 'Larsen',Complemento: 'Macdonald', },
 				],
-				deletar: false,
 				fields:['Rua','CEP','Cidade','Estado', 'Complemento', 'Ações'],
-				Mensagem: 'Endereço adicionado com',
-				newItems: '',
+				message: '',
 				selectedItem: '',
 				selectedItemIndex: '',
 				isUndoVisible: false,
@@ -87,13 +84,23 @@ import CepService from '../../services/CepService'
 				tempCep = this.cep
 			}
 			
-				CepService.getAddress(tempCep).then((response)=>{	
+				CepService.getAddress(tempCep).then((response)=>{
+					if(!response.data.erro){
 					let tempAdress = { Rua: response.data.logradouro, CEP: response.data.cep, Cidade: response.data.localidade ,Estado: response.data.uf, Complemento: response.data.complemento, }
 					this.items.push(tempAdress)
 					localStorage.setItem('ceps', JSON.stringify(this.items) )
+					this._sucessMessage()
+					}	
+
 				}).catch(error=>console.log(error))
 			},
 			
+           _sucessMessage(){
+			this.message ="Endereço adicionado com sucesso"
+			setTimeout(() => {
+					this.message= ''
+				}, 5000);},
+
 			//essa parte da validacao teve que ser assim pois o componente de input do bootstrap formater obriga que o metodo de formatar seja funcional
 			formatCep(value){
 				return this._removeLettersFromCep(value)
