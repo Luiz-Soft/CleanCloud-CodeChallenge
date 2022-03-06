@@ -2,31 +2,88 @@
 	<div class="container">
 		<div class="formView">
 			<p>Pesquisar endereço</p>
+			
 			<b-form-input v-model="cep" placeholder="Digite o CEP" />
-			<b-button>Pesquisar</b-button>
+			<b-button @click.prevent="getCep" >Pesquisar</b-button>
+			<p> {{Mensagem}} </p>
 		</div>
         
 		<div>
-		<b-table striped hover :items="items"></b-table>
-		</div>
+		<hr>
+
+<b-table hover head-variant="dark"
+		id="pages-table"
+           :items="items"
+           :fields="fields">
+    <template v-slot:cell(Ações)="data" >
+        <b-button @click.prevent="removeItem(data.item, data.index)">
+          Deletar {{data.index}}
+        </b-button>
+      </template>
+  </b-table>
+
 	</div>
+
+<Undo v-if="isUndoVisible" :item="selectedItem" :index="selectedItemIndex" @undo="undoRemotion" />
+	</div>
+
 </template>
 
 <script>
+import Undo from './components/Undo';
+import CepService from '../../services/CepService'
+
 	export default {
 		name: 'Home',
+		components: {Undo},
 		data() {
 			return {
 				cep: '',
 				items: [
-					{ age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-					{ age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-					{ age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-					{ age: 38, first_name: 'Jami', last_name: 'Carney' },
+					{ Rua: 40, CEP: 'Larsen', Cidade: 'Macdonald',Estado: 'Larsen',Complemento: 'Macdonald',  },
+					{ Rua: 21, CEP: 'Larsen', Cidade: 'Shaw' ,Estado: 'Larsen',Complemento: 'Macdonald', },
+					{ Rua: 89, CEP: 'Geneva', Cidade: 'Wilson',Estado: 'Larsen',Complemento: 'Macdonald', },
+					{ Rua: 38, CEP: 'Jami', Cidade: 'Carney',Estado: 'Larsen',Complemento: 'Macdonald', },
 				],
+				deletar: false,
+				fields:['Rua','CEP','Cidade','Estado', 'Complemento', 'Ações'],
+				Mensagem: 'Endereço adicionado com',
+				newItems: '',
+				selectedItem: '',
+				selectedItemIndex: '',
+				isUndoVisible: false,
 			};
 		},
-		methods: {},
+		methods: {
+
+
+			removeItem(selectedItem, index){
+				
+				this.items.splice(index,1)
+					
+				this.selectedItem = selectedItem
+				this.selectedItemIndex = index		
+				this.showUndo()	
+			},
+
+			showUndo(){
+				this.isUndoVisible= true
+				setTimeout(() => {
+					this.isUndoVisible= false
+				}, 5000);
+			},
+			undoRemotion({item, index}){
+				this.items.splice(index, 0, item)
+				this.isUndoVisible=false
+			},
+			getCep(){
+				console.log("CHEGOU NO GET CEP GALERA")
+				CepService.getAddress(this.cep).then((response)=>{	
+					let tempAdress = { Rua: response.data.logradouro, CEP: response.data.cep, Cidade: response.data.localidade ,Estado: response.data.uf, Complemento: response.data.complemento, }
+					this.items.push(tempAdress)
+				}).catch(error=>console.log(error))
+			}
+		},
 		computed: {},
 	};
 </script>
