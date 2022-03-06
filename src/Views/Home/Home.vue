@@ -3,7 +3,7 @@
 		<div class="formView">
 			<p>Pesquisar endereço</p>
 			
-			<b-form-input v-model="cep" placeholder="Digite o CEP" />
+			<b-form-input v-model="cep" placeholder="Digite o CEP" :formatter="formatCep" />
 			<b-button @click.prevent="getCep" >Pesquisar</b-button>
 			<p> {{Mensagem}} </p>
 		</div>
@@ -82,7 +82,23 @@ import CepService from '../../services/CepService'
 					let tempAdress = { Rua: response.data.logradouro, CEP: response.data.cep, Cidade: response.data.localidade ,Estado: response.data.uf, Complemento: response.data.complemento, }
 					this.items.push(tempAdress)
 				}).catch(error=>console.log(error))
-			}
+			},
+			
+			//essa parte da validacao teve que ser assim pois o componente de input do bootstrap formater obriga que o metodo de formatar seja funcional
+			formatCep(value){
+				return this._removeLettersFromCep(value)
+			},
+			_removeLettersFromCep(value){
+				return this._addDashToCep(value.replace(/[^\d]+/g, ''))
+			},
+			_addDashToCep(value){
+			let tempValue = value	
+			return this._trimCep(tempValue.replace(/(\d{5})(\d{3})/, '$1-$2'));
+			},
+			_trimCep(value){
+				return value.substring(0,9)
+			},
+
 		},
 		computed: {},
 	};
