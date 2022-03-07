@@ -144,6 +144,8 @@
 							this.items.push(tempAdress);
 							localStorage.setItem('ceps', JSON.stringify(this.items));
 							this._sucessMessage();
+						}else{
+							this._notFoundMessage()
 						}
 					})
 					.catch((error) => console.log(error));
@@ -155,7 +157,12 @@
 					this.message = '';
 				}, 5000);
 			},
-
+           _notFoundMessage() {
+				this.message = 'Endereço não encontrado.';
+				setTimeout(() => {
+					this.message = '';
+				}, 5000);
+			},
 			//essa parte da validacao teve que ser assim pois o componente de input do bootstrap formater obriga que o metodo de formatar seja funcional
 			formatCep(value) {
 				return this._removeLettersFromCep(value);
