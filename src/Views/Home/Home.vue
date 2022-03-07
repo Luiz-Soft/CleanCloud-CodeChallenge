@@ -1,21 +1,30 @@
 <template>
 	<div class="container">
+		
 		<div class="formView">
-			<p>Pesquisar endereço</p>
-			<b-form-input v-model="cep" placeholder="Digite o CEP" :formatter="formatCep" />
-			<b-button @click.prevent="getAddress" >Pesquisar</b-button>
-			<p> {{message}} </p>
+			
+			<h5 class="formView"> Pesquisar Endereço </h5>
+			
+			<div>
+			<b-form-input class="input" v-model="cep" placeholder="Digite o CEP" :formatter="formatCep" label-for="input-sm"/>
+			</div>
+			
+			<div>
+			<b-button  class="formView input" @click.prevent="getAddress"  size="sm">Pesquisar</b-button>
+			</div>
+			
+			<p class="formView sucess"> {{message}} </p>
 		</div>
         
 		<div>
 		<hr>
 
-<b-table  sticky-header hover head-variant="dark"
+<b-table  borderless sticky-header="60vh" hover head-variant="dark"
 		id="pages-table"
            :items="items"
            :fields="fields">
     <template v-slot:cell(Ações)="data" >
-        <b-button @click.prevent="removeItem(data.item, data.index)">
+        <b-button class="button" @click.prevent="removeItem(data.item, data.index)">
           Deletar
         </b-button>
       </template>
@@ -96,7 +105,7 @@ import CepService from '../../services/CepService'
 			},
 			
            _sucessMessage(){
-			this.message ="Endereço adicionado com sucesso"
+			this.message ="Endereço adicionado com sucesso."
 			setTimeout(() => {
 					this.message= ''
 				}, 5000);},
@@ -135,9 +144,48 @@ import CepService from '../../services/CepService'
 		background-color: white;
 		display: flex;
 		flex-direction: column;
+		border: 1px solid #CDCFD7;
+        border-radius: 5px;
+		margin-top: 3vh;
+		min-height: 75vh;
 	}
 	.formView {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+		margin: 1em;
 	}
+	.table > :not(caption) > * > *{
+	background-color: white ;
+
+	}
+	h5{
+		color: #4b5563;
+	}
+td{
+	color: #999FB9
+}
+th{
+	font-weight: 400;
+}
+	.sucess{
+		color: #999FB9;
+	}
+	.button{
+		max-height: 35px;
+		background-color: #F0F0F0;
+		border: none;
+		color: #4B5563;
+		font-weight: 400;
+	}
+	.btn:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: #F0F0F0;
+  color: #4B5563;
+}
+
+.input{
+	max-height: 30px;
+}
 </style>

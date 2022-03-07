@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container" >
-    <b-navbar class="navbar-background-color" toggleable="lg" type="light" variant="light">
+    <b-navbar  class="navbar-background-color flex-container" toggleable="lg" type="light" variant="light">
       
       <img src="../assets/images/logo.cleancloud.svg" alt="CleanCloud logo"  width="500" height="50"> <img/>
 
@@ -20,7 +20,8 @@ export default {
 .flex-container{
     display: flex;
     justify-content: center;
-    width: 100%;
+    flex-direction: row;
+    flex-grow: 1;
 }
  .navbar-background-color{
     background-color: #ffff !important;
