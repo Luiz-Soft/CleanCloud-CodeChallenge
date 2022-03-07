@@ -139,7 +139,7 @@ import CepService from '../../services/CepService'
 	};
 </script>
 
-<style lang="scss">
+<style >
 	.container {
 		background-color: white;
 		display: flex;
