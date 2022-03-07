@@ -14,7 +14,7 @@
 			</div>
 
 			<div>
-				<b-button class="formView input" @click.prevent="getAddress" size="sm"
+				<b-button :disabled="isCepValid" class="formView input" @click.prevent="getAddress" size="sm"
 					>Pesquisar</b-button
 				>
 			</div>
@@ -100,6 +100,11 @@
 				selectedItemIndex: '',
 				isUndoVisible: false,
 			};
+		},
+		computed:{
+			isCepValid(){
+				return this.cep.length<9
+			}
 		},
 		methods: {
 			removeItem(selectedItem, index) {
