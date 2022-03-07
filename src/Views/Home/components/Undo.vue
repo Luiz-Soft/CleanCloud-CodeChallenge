@@ -58,9 +58,7 @@ export default {
 }
 
 	@media only screen and (max-device-width: 480px) {
-		h1 {
-			font-size: 30vw;
-		}
+
     .flex-container {
     margin-top: 15vh;
     min-height: 3vh;

@@ -32,7 +32,7 @@
 
 	</div>
 
-<Undo v-if="true" :item="selectedItem" :index="selectedItemIndex" @undo="undoRemotion" />
+<Undo v-if="isUndoVisible" :item="selectedItem" :index="selectedItemIndex" @undo="undoRemotion" />
 	</div>
 
 </template>
@@ -188,4 +188,17 @@ th{
 .input{
 	max-height: 30px;
 }
+
+
+	@media only screen and (max-device-width: 480px) {
+  .input{
+	min-width: 100px;
+  }
+.sucess{
+	position:absolute;
+	top:27vh;
+}
+  
+  }
+
 </style>

@@ -28,4 +28,14 @@ export default {
 html,body {
     font-family: 'Roboto', sans-serif !important;
 }
+
+	@media only screen and (max-device-width: 480px) {
+  
+  #app{
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
+  
+  }
 </style>
