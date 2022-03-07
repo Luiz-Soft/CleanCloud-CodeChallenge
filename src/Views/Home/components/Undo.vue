@@ -57,6 +57,16 @@ export default {
    cursor: pointer;
 }
 
-
-
+	@media only screen and (max-device-width: 480px) {
+		h1 {
+			font-size: 30vw;
+		}
+    .flex-container {
+    margin-top: 15vh;
+    min-height: 3vh;
+    min-width: 40vh;
+    font-size: 80%;
+    top: 65vh;
+    }
+  }
 </style>

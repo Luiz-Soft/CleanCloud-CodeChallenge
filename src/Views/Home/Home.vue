@@ -32,7 +32,7 @@
 
 	</div>
 
-<Undo v-if="isUndoVisible" :item="selectedItem" :index="selectedItemIndex" @undo="undoRemotion" />
+<Undo v-if="true" :item="selectedItem" :index="selectedItemIndex" @undo="undoRemotion" />
 	</div>
 
 </template>
