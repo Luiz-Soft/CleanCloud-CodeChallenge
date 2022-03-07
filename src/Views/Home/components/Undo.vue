@@ -1,8 +1,8 @@
 <template>
   <div class="flex-container" >
 
-  <p> O CEP {{item.CEP}} foi removido com sucesso </p>
-  <p v-on:click="undo" >Desfazer</p>
+  <p class="warn"> O CEP {{item.CEP}} foi removido com sucesso </p>
+  <p class="undo" v-on:click="undo" >Desfazer</p>
 
   </div>
 </template>
@@ -33,13 +33,28 @@ export default {
 <style scoped>
 .flex-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     flex-direction:row;
     background-color:#fff4df;
-    border: 1px solid #ffc961;
+    border: 1px solid #FF835C;
     border-radius: 5px;
-    
+    max-width: 40vw;
+    align-self: center;
+    padding: 20px 10px 10px 10px;
+    max-height: 7vh;
+    position: absolute;
+    top: 80vh;
+}
+
+.warn{
+  color:#FF835C;
+}
+
+.undo{
+   color:#FF835C;
+   font-size: 85%;
+   cursor: pointer;
 }
 
 
