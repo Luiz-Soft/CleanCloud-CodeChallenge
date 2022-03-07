@@ -10,7 +10,7 @@
 		<div>
 		<hr>
 
-<b-table hover head-variant="dark"
+<b-table  sticky-header hover head-variant="dark"
 		id="pages-table"
            :items="items"
            :fields="fields">
